@@ -35,7 +35,7 @@ public class RangerController {
 		//request.setAttribute("rangers",rangers);
 		model.addAttribute("rangers", rangers);
 		
-		return "/ranger/rangerList";
+		return "ranger/rangerList";
 	}
 	
 	
@@ -55,14 +55,14 @@ public class RangerController {
 	//localhost:/ranger/getRanger 요청시 아래 매서드에 요청
 	//vo객체에 파라미터 명과 동일한 이름 필드가 
 		@RequestMapping("/getRanger")
-		public String getRanger(RangerVo rangerVo, Model model, HttpSession session) {
+		public String getRanger(RangerVo rangerVo, Model model) {
 			
 			String ranger = rangerService.getRanger(rangerVo.getListIndex());
 			
 			
 			model.addAttribute("ranger", ranger);
 			
-			return "/ranger/ranger";
+			return "ranger/ranger";
 		}
 
 }

@@ -28,11 +28,6 @@ public class RangerDaoImpl implements IRangerDao {
 	*/
 	@Override
 	public List<String> getRangers() {
-		rangers.add("brown");
-		rangers.add("cony");
-		rangers.add("sally");
-		rangers.add("moon");
-		rangers.add("james");
 		
 		
 		return rangers;
