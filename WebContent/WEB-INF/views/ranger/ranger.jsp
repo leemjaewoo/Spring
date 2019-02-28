@@ -8,7 +8,12 @@
 </head>
 <body>
 
-	ranger : ${ranger }
+	rangerVo : ${rVo }<br>
+	ranger : ${ranger } <br>
+	게시판 구분 : ${boardGb }<br>
+	게시판 구분 : ${boardGb2 }
+	
+	<%=new String("test") %>
 
 </body>
 </html>

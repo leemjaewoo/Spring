@@ -25,6 +25,9 @@
   		</tbody>
   	
   	</table>
+  	<br>
+  	게시판 구분 : ${boardGb }
+  	게시판 구분 : ${boardGb2 }
   
   
   

@@ -73,12 +73,16 @@ import kr.or.ddit.test.WebTestConfig;
 		String viewName =  mav.getViewName();
 		Map<String, Object> model = mav.getModel();
 		List<String> rangers = (List<String>)model.get("rangers");
+		List<String> boardGbList = (List<String>) model.get("boardGb");
 		
 		
 		/***Then***/
 		assertEquals("ranger/rangerList", viewName);
 		assertNotNull(rangers);
 		assertEquals(5, rangers.size());
+		assertNotNull(boardGbList);
+		assertEquals(4, boardGbList.size());
+		
 
 	}
 	
@@ -95,13 +99,34 @@ import kr.or.ddit.test.WebTestConfig;
 	
 	ModelMap modelMap = mav.getModelMap();
 	String ranger =  (String)modelMap.get("ranger");
+	List<String> boardGb= (List<String>) modelMap.get("boardGb");
 	
 	
 	
 	/***Then***/
 	assertEquals("ranger/ranger", viewName);
 	assertEquals("sally", ranger);
+	assertNotNull(boardGb);
+	assertEquals(4, boardGb.size());
 	
+	
+
+	}
+	
+	@Test
+	public void getRangerMav() throws Exception {
+		/***Given***/
+		
+		
+		/***When***/
+		MvcResult mvcResult =  mockMvc.perform(get("/ranger/getRangerMav")).andReturn();
+		
+		ModelAndView mav =  mvcResult.getModelAndView();
+		
+		/***Then***/
+		assertEquals("ranger/rangerList", mav.getViewName());
+		assertEquals(5, ((List<String>)mav.getModel().get("rangers")).size());
+		
 
 	}
 
