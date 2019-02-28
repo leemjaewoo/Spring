@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.or.ddit.test.WebTestConfig;
 /*
  * 1.스프링 컨테이너 설정 필요 테스트 대상은 RangerController RangerController는
  * servlet-context.xml component scan 설정 되어있음 Rangercontroller는 RangerService객체를 주입받음.
@@ -29,15 +31,15 @@ import org.springframework.web.servlet.ModelAndView;
  * 
  * 
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:kr/or/ddit/config/spring/servlet-context.xml",
 					"classpath:kr/or/ddit/config/spring/application-context.xml"})
 @WebAppConfiguration //스프링 컨테이너를 만들때 WebApplicationContext로 생성
 					 //미적용시 applicationContext
-public class RangerControllerTest {
+*/public class RangerControllerTest extends WebTestConfig{
 
 	
-	@Autowired
+	/*@Autowired
 	private WebApplicationContext context;
 	private MockMvc mockMvc;
 	
@@ -50,7 +52,7 @@ public class RangerControllerTest {
 	@Before
 	public void setup(){
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-	}
+	}*/
 	
 	/**
 	* Method : testgetRangers
