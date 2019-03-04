@@ -80,5 +80,47 @@ public class UserControllerTest extends WebTestConfig{
 
 		
 	}
+	
+	
+	@Test
+	public void testUserDetail() throws Exception {
+		
+		/***Given***/
+		
+		
+		
+		/***When***/
+
+		MvcResult mvcResult = mockMvc.perform(get("/user/user").param("userId", "brown")).andReturn();
+		ModelAndView mav = mvcResult.getModelAndView();
+		String viewName = mav.getViewName();
+		
+		UserVO uservo = (UserVO)mav.getModel().get("uservo");
+		
+		/***Then***/
+		
+		assertEquals("user/user", viewName);
+		assertNotNull(uservo);
+
+		
+	}
+	
+	//@Test
+	//public void testProfileImg(){}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

@@ -1,13 +1,22 @@
 package kr.or.ddit.user;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ddit.user.model.UserVO;
@@ -41,6 +50,15 @@ public class UserController {
 	}
 	
 	
+	/**
+	* Method : userPagingList
+	* 작성자 : leemjaewoo
+	* 변경이력 :
+	* @param pageVo
+	* @param model
+	* @return
+	* Method 설명 : 사용자 페이징 리스트 조회
+	*/
 	@RequestMapping("/userPagingList")
 	public String userPagingList(PageVO pageVo, Model model ){
 		
@@ -57,5 +75,83 @@ public class UserController {
 		
 	
 	}
+	
+	@RequestMapping(path="/user",method=RequestMethod.GET )
+	public String user(@RequestParam("userId")String userId, Model model){
+		
+		
+		UserVO userVo = userService.selectUser(userId);
+		model.addAttribute("uservo", userVo);
+		
+		return "user/user";
+	}
+	
+	
+	@RequestMapping("/profileImg")
+	public void profileImg(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam("userId")String userId) throws IOException{
+		
+		response.setHeader("content-Disposition", "attachment; filename=profile.png");
+		response.setContentType("image.png");
+		
+		
+		UserVO vo = userService.selectUser(userId);
+		FileInputStream fis;
+		if(vo != null && vo.getRealFilename() != null) {
+			 fis = new FileInputStream(new File(vo.getRealFilename()));
+		}else {
+			
+			
+			
+			
+			ServletContext application =  request.getServletContext();
+			String noimgPath = application.getRealPath("/upload/noimage.jpg");
+			fis = new FileInputStream(new File(noimgPath));
+		}
+		
+		ServletOutputStream sos = response.getOutputStream();
+		
+		
+		byte[] buff = new byte[512];
+		int len = 0;
+		while( (len = fis.read(buff)) > -1 ) {
+			sos.write(buff);
+		}
+		
+		sos.close();
+		fis.close();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
