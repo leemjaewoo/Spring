@@ -1,7 +1,10 @@
-package kr.or.ddit.user.model;
+package kr.or.ddit.lprod.model;
 
-public class ProdVO {
-	
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class ProdVO{
+	private Logger logger = LoggerFactory.getLogger(ProdVO.class);
 	private String prod_id;
 	private String prod_name;
 	private String prod_lgu;
@@ -33,6 +36,18 @@ public class ProdVO {
 	public void setProd_buyer(String prod_buyer) {
 		this.prod_buyer = prod_buyer;
 	}
+	/*@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		HttpSession session = event.getSession();
+		logger.debug("ProdVO valueBound : {}", session.getId() );
+		
+	}
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		HttpSession session = event.getSession();
+		logger.debug("ProdVO valueBound : {}", session.getId() );
+		
+	}*/
 	
 
 }

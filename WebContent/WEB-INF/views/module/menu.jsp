@@ -21,7 +21,7 @@
            
            
            <ul class="nav nav-sidebar">
-            <li><a href="${cp }/lprodAllList">제품 그룹리스트 조회</a></li>
-            <li><a href="${cp }/lprodpagingList">제품  리스트 페이징</a></li>
+            <li><a href="${cp }/lprod/lprodAllList">제품 그룹리스트 조회</a></li>
+            <li><a href="${cp }/lprod/lprodpagingList">제품  리스트 페이징</a></li>
           </ul> 
         </div>
