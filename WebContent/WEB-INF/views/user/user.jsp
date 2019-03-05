@@ -37,7 +37,7 @@
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">사용자 정보조회</h1>
           
-					<form id="frm" name="userId" action="${cp}/usermodifyformcontroller" method="get">
+					<form id="frm" name="userId" action="${cp}/user/usermodifyformcontroller" method="get">
 					
 					<input type="hidden" id="userId" name="userId" value="${uservo.userId }" />
 					
@@ -151,10 +151,9 @@
 			
 			
 			//server side 에서 비교
-			<c:if test="${msg != null}">
+			 <c:if test="${msg != null}">
 			alert("${msg}");
-			<%session.removeAttribute("msg");%>
-			</c:if>
+			</c:if> 
 			
 		});
 			</script>	

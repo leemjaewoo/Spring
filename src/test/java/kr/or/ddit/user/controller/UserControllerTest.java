@@ -1,12 +1,19 @@
 package kr.or.ddit.user.controller;
 
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.junit.Test;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -107,6 +114,71 @@ public class UserControllerTest extends WebTestConfig{
 	
 	//@Test
 	//public void testProfileImg(){}
+	
+	
+	@Test
+	public void testUserForm() throws Exception{
+		/***Given***/
+		
+		MvcResult mvcResult = mockMvc.perform(get("/user/userForm")).andReturn();
+		ModelAndView mav = mvcResult.getModelAndView();
+		String viewName = mav.getViewName();
+		
+		
+		/***Then***/
+		
+		assertEquals("user/userForm", viewName);
+
+	}
+	
+	
+	@Test
+	public void testUserModify() throws Exception{
+		/***Given***/
+		
+		MvcResult mvcResult = mockMvc.perform(get("/user/usermodifyformcontroller").param("userId", "brown")).andReturn();
+		ModelAndView mav = mvcResult.getModelAndView();
+		String viewName = mav.getViewName();
+		
+		
+		/***Then***/
+		
+		assertEquals("user/userModify", viewName);
+
+	}
+	@Test
+	public void testUserModify2() throws Exception{
+		/***Given***/
+		
+		File profileFile = new File("C:\\Users\\leemjaewoo\\Desktop\\레인저스사진\\moon.png");
+		FileInputStream fis = new FileInputStream(profileFile);
+		
+		
+		
+		MockMultipartFile file = new MockMultipartFile
+				("profile", "moon.png", "image/png", fis);
+		
+		
+		MvcResult mvcResult =
+		mockMvc.perform(fileUpload("/user/usermodifyformcontroller").file(file)
+				.param("userId", "sally")
+				.param("userNm", "샐리테스트")
+				.param("alias", "병아리")
+				.param("addr1", "대전시 중구 대흥로 76")
+				.param("addr2", "2층 DDIT")
+				.param("zipcode", "34942")
+				.param("pass", "testpass")).andReturn();
+				
+		
+		/***When***/
+		
+		HttpSession session = mvcResult.getRequest().getSession();
+		
+		
+		/***Then***/
+		assertEquals("정상 등록 되었습니다", session.getAttribute("msg"));
+		
+	}
 	
 	
 	
