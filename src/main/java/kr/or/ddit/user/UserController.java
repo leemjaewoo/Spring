@@ -48,8 +48,8 @@ public class UserController {
 		List<UserVO> userList = userService.getAllUser();
 
 		model.addAttribute("userList", userList);
-
-		return "user/userAllList";
+		return "userAllListTiles";
+		//return "user/userAllList";
 
 	}
 
@@ -70,8 +70,8 @@ public class UserController {
 
 		model.addAttribute("pageSize", pageVo.getPageSize());
 		model.addAttribute("page", pageVo.getPage());
-
-		return "user/userPagingList";
+		return "userPagingListTiles";
+		//return "user/userPagingList";
 
 	}
 
@@ -80,8 +80,8 @@ public class UserController {
 
 		UserVO userVo = userService.selectUser(userId);
 		model.addAttribute("uservo", userVo);
-
-		return "user/user";
+		return "userTiles";
+		//return "user/user";
 	}
 
 	@RequestMapping("/profileImg")
