@@ -74,6 +74,19 @@ public class UserController {
 		//return "user/userPagingList";
 
 	}
+	/**
+	* Method : userPagingListAjaxView
+	* 작성자 : leemjaewoo
+	* 변경이력 :
+	* @return
+	* Method 설명 : 사용자 페이징 리스트 view
+	*/
+	@RequestMapping("/userPagingListAjaxView")
+	public String userPagingListAjaxView() {
+		
+		return "userPagingListAjaxTiles";
+
+	}
 
 	@RequestMapping(path = "/user", method = RequestMethod.GET)
 	public String user(@RequestParam("userId") String userId, Model model) {
@@ -256,6 +269,51 @@ public class UserController {
 				return "/user/userForm";
 			}
 
+
+	}
+	
+	
+	/**
+	* Method : userPagingListAjax
+	* 작성자 : leemjaewoo
+	* 변경이력 :
+	* @param pageVo
+	* @param model
+	* @return
+	* Method 설명 : 사용자 페이지 리스트 ajax 요청처리
+	*/
+	@RequestMapping("/userPagingListAjax")
+	public String userPagingListAjax(PageVO pageVo, Model model) {
+
+		// PageVO pageVo = new PageVO(page, pageSize);
+
+		Map<String, Object> resultMap = userService.selectUserPagingList(pageVo);
+		model.addAllAttributes(resultMap);
+
+		model.addAttribute("pageSize", pageVo.getPageSize());
+		model.addAttribute("page", pageVo.getPage());
+		
+		//userList, userCnt, pageSize, page
+		// { userList : [ {userId : 'brown', userNm : '브라운}... {userId : 'sally', userNm : '샐리'}]
+		//  userCnt : "110",
+		// pageSize : "10",
+		// page     :  2}
+		
+		return "jsonView";
+
+	}
+	
+	@RequestMapping("/userPagingListAjaxHtml")
+	public String userPagingListAjaxHtml(PageVO pageVo, Model model) {
+
+		// PageVO pageVo = new PageVO(page, pageSize);
+
+		Map<String, Object> resultMap = userService.selectUserPagingList(pageVo);
+		model.addAllAttributes(resultMap);
+		model.addAttribute("pageSize", pageVo.getPageSize());
+		model.addAttribute("page", pageVo.getPage());
+		
+		return "user/userPagingListAjaxHtml";
 
 	}
 	

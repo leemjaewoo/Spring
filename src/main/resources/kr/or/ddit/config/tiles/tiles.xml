@@ -14,7 +14,7 @@
         
         <definition name="layout" template="/WEB-INF/views/module/layout.jsp">
            <put-attribute name="header" value="/WEB-INF/views/module/header.jsp"/>
-           <put-attribute name="left" value="/WEB-INF/views/module/left.jsp"/>
+           <put-attribute name="left" value="/WEB-INF/views/module/menu.jsp"/>
            <put-attribute name="content" value=""/>
         </definition>
         
@@ -28,4 +28,14 @@
         <definition name="userTiles" extends="layout">
            <put-attribute name="content" value="/WEB-INF/views/user/userContent.jsp"/>
         </definition>
+        
+        
+        <definition name="userPagingListAjaxTiles" extends="layout">
+           <put-attribute name="content" value="/WEB-INF/views/user/userPagingListContentAjax.jsp"/>
+        </definition>
+        
+        
+        
+        
+        
 </tiles-definitions>
