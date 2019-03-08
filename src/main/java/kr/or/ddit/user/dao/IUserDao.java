@@ -16,10 +16,10 @@ public interface IUserDao {
 	* @return
 	* Method 설명 : 전체 사용자 조회
 	*/
-	List<UserVO> getAllUser(SqlSession sqlSession);
+	List<UserVO> getAllUser();
 	
 	
-	UserVO selectUser(SqlSession sqlSession,String user);
+	UserVO selectUser(String user);
 	
 	
 	/**
@@ -30,7 +30,7 @@ public interface IUserDao {
 	* @return
 	* Method 설명 : 사용자 페이징 리스트 조회
 	*/
-	List<UserVO> selectUserPagingList(SqlSession sqlSession,PageVO pagevo);
+	List<UserVO> selectUserPagingList(PageVO pagevo);
 	
 	
 	
@@ -41,16 +41,16 @@ public interface IUserDao {
 	* @return
 	* Method 설명 : 전체 사용자 수를 조회
 	*/
-	int getUserCnt(SqlSession sqlSession);
+	int getUserCnt();
 	
 	
-	 int insert(SqlSession sqlSession,UserVO vo);
+	 int insert(UserVO vo);
 	 
-	 int deleteUser(SqlSession sqlSession,String userId);
+	 int deleteUser(String userId);
 	 
-	 int updateUser(SqlSession sqlSession,UserVO uservo);
+	 int updateUser(UserVO uservo);
 	 
-	 void encryptPass(SqlSession sqlSession,UserVO uservo);
+	 void encryptPass(UserVO uservo);
 	
 	
 

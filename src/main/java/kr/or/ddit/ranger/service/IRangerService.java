@@ -21,5 +21,6 @@ public interface IRangerService {
 
 	String getRanger(int index);
 	
+	
 
 }

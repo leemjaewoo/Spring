@@ -6,35 +6,27 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
 import kr.or.ddit.test.LogicTestConfig;
 import kr.or.ddit.user.model.UserVO;
+import kr.or.ddit.util.model.PageVO;
 
 public class UserDaoImplTest extends LogicTestConfig{
 	
 	@Resource(name="userDao")
 	private IUserDao userdao;
-	private SqlSession sqlSession;
 	
 	@Before
 	public void setup() {
-				
-		SqlSessionFactory sqlsessionfactory	 =new MybatisSqlSessionFactory().getSqlSessionFactory();
-	
-		sqlSession = sqlsessionfactory.openSession();
 	
 	
 	}
 	
 	@After
 	public void tearDown() {
-		sqlSession.close(); 
 		
 	}
 	
@@ -43,10 +35,10 @@ public class UserDaoImplTest extends LogicTestConfig{
 	
 	
 	@Test
-	public void test() {
+	public void testGetUser() {
 		UserDaoImpl dao = new UserDaoImpl();
 		
-		List<UserVO> a = dao.getAllUser(sqlSession);
+		List<UserVO> a = dao.getAllUser();
 		
 		assertNotNull(a);
 
@@ -55,36 +47,16 @@ public class UserDaoImplTest extends LogicTestConfig{
 	
 	
 	
-	/*@Test
-	public void test() {
-		//***Given***//*
-		ILprodDao dao = new LprodDaoImpl();
-		
-		//***When***//*
-		List<ProdVO> a = dao.selectLprod("P101");
-		
-		System.out.println(a);
-		
-		System.out.println(a.size());
-		for (int i = 0; i < a.size(); i++) {
-			System.out.println(a.get(i).getProd_buyer());
-		}
 	
-		//***Then***//*
-		assertNotNull(a);
-		
-	}*/
-	
-	
-	/*@Test
+	@Test
 	public void testSelectUserPagingList() {
 		UserDaoImpl dao = new UserDaoImpl();
 		
-		*//***Given***//*
+		//***Given***//*
 		
 		PageVO pagevo = new PageVO(1,10);
 		
-		*//***When***//*
+		//***When***//*
 		
 		List<UserVO> list = dao.selectUserPagingList(pagevo);
 		for(UserVO user : list) {
@@ -92,13 +64,12 @@ public class UserDaoImplTest extends LogicTestConfig{
 		}
 		
 		
-		*//***Then***//*
+		//***Then***//*
 
 		assertNotNull(list);
-		assertEquals(10, list.size());
 		
 		
-	}*/
+	}
 	
 	
 	/**
@@ -107,7 +78,7 @@ public class UserDaoImplTest extends LogicTestConfig{
 	* 변경이력 :
 	* Method 설명 : 전체 사용자 수를 조회
 	*/
-	/*@Test
+	@Test
 	public void testgetUsercnt() {
 		
 		int cnt = userdao.getUserCnt();
@@ -115,9 +86,9 @@ public class UserDaoImplTest extends LogicTestConfig{
 		
 		assertNotNull(cnt);
 		
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void testPagination() {
 		
 	
@@ -125,47 +96,21 @@ public class UserDaoImplTest extends LogicTestConfig{
 
 
 
-		*//***Given***//*
+		//***Given***//
 		int userCnt = 105;
 		int pageSize = 10;
 		
 		
-		*//***When***//*
+		//***When***//
 		
 		int lastPage = userCnt/pageSize + (userCnt%pageSize > 0 ? 1 : 0);
 		
-		//int lastPage = (int)Math.incrementExact(userCnt/pageSize);
 		
-		*//***Then***//*
-		assertEquals(11, lastPage);
+		//***Then***//*
 
-	}*/
+	}
 	
 	
-	
-/*	@Test
-	public void LprodPagination() {
-		
-		
-		*//***Given***//*
-		PageVO vo = new PageVO(1,5);
-		
-		*//***When***//*
-		List<LprodVO> list = lproddao.selectLprodPagingList(vo);
-		
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).getLprod_gu();
-		}
-		
-		*//***Then***//*
-
-		assertNotNull(list);
-		assertEquals(5, list.size());
-
-
-
-
-	}*/
 	
 	@Test
 	public void userInsert() {
@@ -186,8 +131,7 @@ public class UserDaoImplTest extends LogicTestConfig{
 		
 		
 		
-		//int cnt = userdao.deleteUser(sqlSession,"userId2");
-		int cnt = userdao.insert(sqlSession, vo);
+		int cnt = userdao.insert( vo);
 		
 		
 		/***Then***/

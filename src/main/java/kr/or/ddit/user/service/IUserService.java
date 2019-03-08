@@ -21,6 +21,14 @@ public interface IUserService {
 
 	Map<String, Object> selectUserPagingList(PageVO pagevo);
 
+	/**
+	* Method : insertUser
+	* 작성자 : leemjaewoo
+	* 변경이력 :
+	* @param vo
+	* @return
+	* Method 설명 : 사용자 등록
+	*/
 	int insertUser(UserVO vo);
 	
 	
