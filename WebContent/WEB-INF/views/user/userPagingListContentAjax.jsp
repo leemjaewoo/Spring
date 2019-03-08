@@ -148,9 +148,31 @@
 				
 				
 				
+				
+				
 			var htmlArr = data.split("=============seperator==============================");
 				$("#userListTbody").html(htmlArr[0]);
 				$("#Pagination").html(htmlArr[1]);
+				
+				
+				//사용자 tr 태그 클릭시 이벤트 핸들러
+				$(".userTr").on("click", function() {
+					console.log("userTr click");
+					//클릭한 userTr태그의 userId 값을 출력
+					// 				var userId = $(this).children()[1].innerText;
+					// 				console.log("userId : " + userId);
+
+					var userId = $(this).data("userid");
+
+					// /user
+					// 1. docuemnt
+					//document.location = "/user?userId=" + userId;
+
+					// 2. form
+					$("#userId").val(userId);
+					//$("#frm").attr("action", "/userAllList");
+					$("#frm").submit();
+				});
 			}
 		});
 		
@@ -170,24 +192,7 @@
 				<%session.removeAttribute("msg");%>
 			</c:if>
 			
-			//사용자 tr 태그 클릭시 이벤트 핸들러
-			$(".userTr").on("click", function() {
-				console.log("userTr click");
-				//클릭한 userTr태그의 userId 값을 출력
-				// 				var userId = $(this).children()[1].innerText;
-				// 				console.log("userId : " + userId);
-
-				var userId = $(this).data("userid");
-
-				// /user
-				// 1. docuemnt
-				//document.location = "/user?userId=" + userId;
-
-				// 2. form
-				$("#userId").val(userId);
-				//$("#frm").attr("action", "/userAllList");
-				$("#frm").submit();
-			});
+			
 		});
 	</script>
 
