@@ -22,7 +22,7 @@ public class LoggingAdvice {
 	}
 	
 	
-	/*public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable{
+	public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable{
 		//핵심 로직 호출전
 		long startTime = System.currentTimeMillis();
 		
@@ -38,7 +38,7 @@ public class LoggingAdvice {
 		
 		return returnObj;
 		
-	}*/
+	}
 	
 	
 	

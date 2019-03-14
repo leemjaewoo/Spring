@@ -12,7 +12,7 @@
       <aop:aspect ref="loggingAdvice">
          <aop:before method="beforeMethod" pointcut-ref="target"/>
          <aop:after method="afterMethod" pointcut-ref="target"/>
-         <!-- <aop:after method="aroundMethod" pointcut-ref="target"/> -->
+          <aop:around method="aroundMethod" pointcut-ref="target"/> 
       </aop:aspect>
    </aop:config>
    </beans>
